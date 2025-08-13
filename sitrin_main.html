@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>סיטרין אחזקות – משקיעים בעתיד</title>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#f4b41a; /* זהב-סיטרין */
+      --brand-dark:#d99a00;
+      --ink:#222;
+      --ink-2:#555;
+      --bg:#f7f7f7;
+      --card:#fff;
+      --ok:#2ea043;
+      --bad:#d73a49;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Assistant',system-ui,Segoe UI,Arial}
+    a{color:inherit}
+    .container{max-width:1100px;margin:auto;padding-inline:20px}
+
+    /* ====== Header / Hero ====== */
+    header{
+      position:relative;
+      background:linear-gradient(135deg, #ffcf4d 0%, #f4b41a 45%, #f7d774 100%);
+      color:#fff;
+      overflow:hidden;
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:18px 0;
+    }
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem}
+    .logo-badge{width:36px;height:36px;border-radius:10px;background:#fff;color:var(--brand);display:grid;place-items:center;font-weight:800}
+    .nav a{opacity:.95;text-decoration:none}
+    .nav .cta-mini{background:#fff;color:#a06b00;padding:10px 14px;border-radius:999px;font-weight:700}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:40px 0 70px}
+    .hero h1{margin:0 0 10px;font-size:clamp(28px,4.6vw,46px);line-height:1.1}
+    .hero p{margin:0 0 18px;color:#fff;opacity:.95;font-size:1.05rem}
+    .hero-card{background:rgba(255,255,255,.12);backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,.35);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .bullets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+    .bullet{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:10px;border-radius:12px}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:999px;padding:14px 20px;font-weight:800;cursor:pointer;transition:.2s transform,.2s filter,.2s background}
+    .btn-primary{background:#fff;color:#a06b00}
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-ghost{background:transparent;border:2px solid #fff;color:#fff}
+    .btn-ghost:hover{filter:brightness(1.05)}
+
+    .hero-visual{position:relative}
+    .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .kpi{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+    .kpi b{display:block;font-size:1.6rem}
+    .ribbon{position:absolute;inset:auto -30px -30px auto;rotate:-8deg;opacity:.15;font-weight:800;font-size:92px;pointer-events:none}
+
+    /* ====== Sections ====== */
+    section{padding:60px 0}
+    h2.section-title{font-size:clamp(24px,3.2vw,34px);margin:0 0 12px;color:var(--brand)}
+    .section-sub{color:var(--ink-2);margin-bottom:26px}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid #eee}
+    .card h3{margin:0 0 8px}
+    .chip{display:inline-block;background:#fff2c7;color:#8a5b00;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.85rem;margin-bottom:8px}
+
+    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .feature{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid #eee;display:flex;gap:14px}
+    .feature .icon{width:46px;height:46px;border-radius:12px;background:#fff2c7;color:#8a5b00;display:grid;place-items:center;font-weight:900}
+
+    /* ====== Contact ====== */
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    form{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid #eee}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-weight:700;margin-top:8px;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:12px;font-family:inherit;font-size:1rem}
+    textarea{min-height:120px}
+    .muted{color:var(--ink-2);font-size:.95rem}
+
+    .aside{background:linear-gradient(135deg,#fff7d6,#fff);border-radius:var(--radius);padding:18px;border:1px dashed #f2d27c}
+    .aside ul{margin:8px 0 0;padding:0 18px}
+
+    .toast{position:fixed;bottom:20px;left:20px;background:#111;color:#fff;padding:12px 16px;border-radius:12px;opacity:0;transform:translateY(10px);transition:.25s}
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    /* ====== Footer ====== */
+    footer{background:#111;color:#fff;padding:26px 0;margin-top:20px}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+    .foot-title{color:#ffd24a;font-weight:800}
+    .foot-sub{opacity:.9}
+    .foot-mini{border-top:1px solid #222;margin-top:14px;padding-top:14px;color:#bbb}
+
+    /* ====== Utilities ====== */
+    .center{text-align:center}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:#fff2c7;color:#8a5b00;border-radius:999px;padding:6px 10px;font-weight:800}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(16px);transition:.6s}
+    .reveal.in{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .cards{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      .foot-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== Top ====== -->
+  <header id="home">
+    <div class="container nav">
+      <div class="logo"><span class="logo-badge">צ</span> סיטרין אחזקות</div>
+      <nav>
+        <a href="#domains">תחומי פעילות</a> ·
+        <a href="#why">למה אנחנו</a> ·
+        <a href="#contact">צור קשר</a>
+        <a class="cta-mini" href="#contact">שיחה עם נציג</a>
+      </nav>
+    </div>
+
+    <div class="container hero">
+      <div>
+        <div class="pill">משקיעים בעתיד · יוצרים ערך בהווה</div>
+        <h1>קבוצת השקעות ישראלית עם <span style="text-decoration:underline">תשואה מוכחת</span> ושקיפות מלאה</h1>
+        <p>סיטרין אחזקות מובילה השקעות בנדל"ן, שוק ההון וחדשנות טכנולוגית תוך ניהול סיכונים קפדני ושירות אישי למשקיעים פרטיים ומוסדיים.</p>
+        <div class="bullets">
+          <div class="bullet">✔ דוחות תקופתיים ושקיפות מלאה</div>
+          <div class="bullet">✔ הזדמנויות ייחודיות בנדל"ן מניב ויזמי</div>
+          <div class="bullet">✔ צוות ניהול בעל ניסיון רב־שנתי</div>
+          <div class="bullet">✔ פתרונות מותאמים לפרופיל הסיכון שלך</div>
+        </div>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">דברו איתי</button>
+          <a class="btn btn-ghost" href="https://wa.me/972501234567" target="_blank" rel="noopener">ווטסאפ מיידי</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="kpi-grid">
+          <div class="kpi reveal"><b>1.2 מיליארד₪</b><span>נכסים מנוהלים (AUM)*</span></div>
+          <div class="kpi reveal"><b>9.1%</b><span>תשואה ממוצעת 5 שנים*</span></div>
+          <div class="kpi reveal"><b>350+</b><span>משקיעים פעילים</span></div>
+          <div class="kpi reveal"><b>30+</b><span>פרויקטים פעילים</span></div>
+        </div>
+        <div class="ribbon">CITRINE</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== Domains ====== -->
+  <section id="domains" class="container">
+    <h2 class="section-title reveal">תחומי פעילות</h2>
+    <p class="section-sub reveal">תמהיל השקעות מגוון המאפשר ניהול סיכונים חכם ומקסום ערך</p>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="chip">נדל"ן מניב</div>
+        <h3>נכסים מניבים בישראל ובחו"ל</h3>
+        <p>איתור, רכישה והשבחה של מרכזים מסחריים, לוגיסטיקה ומשרדים באזורים מתפתחים.</p>
+      </div>
+      <div class="card reveal">
+        <div class="chip">יזמות</div>
+        <h3>פרויקטי פיתוח והתחדשות</h3>
+        <p>מימון וניהול פרויקטים יזמיים משלב התכנון ועד המסירה, עם שותפויות מקומיות.</p>
+      </div>
+      <div class="card reveal">
+        <div class="chip">שוק ההון</div>
+        <h3>ניהול תיקי השקעות</h3>
+        <p>אסטרטגיות ערך וצמיחה, השקעות חוב והגנות סיכון – מותאם לפרופיל הלקוח.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Why Us ====== -->
+  <section id="why" class="container">
+    <h2 class="section-title reveal">למה סיטרין?</h2>
+    <div class="features">
+      <div class="feature reveal"><div class="icon">✓</div><div><h3>שקיפות ובקרה</h3><p>דוחות רבעוניים, עדכוני פרויקט, וממשל תאגידי מוקפד.</p></div></div>
+      <div class="feature reveal"><div class="icon">★</div><div><h3>מומחיות מוכחת</h3><p>צוות ניהול רב־תחומי עם רקורד של אקזיטים והצלחות.</p></div></div>
+      <div class="feature reveal"><div class="icon">⚑</div><div><h3>חיפוש ערך אקטיבי</h3><p>איתור הזדמנויות אוף־מרקט והשבחת נכסים ותזרימים.</p></div></div>
+      <div class="feature reveal"><div class="icon">↻</div><div><h3>ניהול סיכונים</h3><p>פיזור, מינוף זהיר ובדיקות נאותות מעמיקות לפני כניסה.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ====== Contact ====== -->
+  <section id="contact" class="container">
+    <h2 class="section-title reveal">צור קשר</h2>
+    <p class="section-sub reveal">השאירו פרטים ונציג יחזור אליכם בהקדם. אפשר גם לשלוח ווטסאפ או להתקשר.</p>
+    <div class="contact">
+      <form id="leadForm" class="reveal" novalidate>
+        <div class="row">
+          <div>
+            <label for="name">שם מלא</label>
+            <input id="name" name="name" placeholder="הקלד/י שם" required />
+          </div>
+          <div>
+            <label for="phone">טלפון</label>
+            <input id="phone" name="phone" placeholder="050-0000000" required />
+          </div>
+        </div>
+        <label for="email">אימייל</label>
+        <input id="email" name="email" type="email" placeholder="name@example.com" required />
+
+        <label for="topic">נושא</label>
+        <select id="topic" name="topic">
+          <option>השקעות נדל"ן</option>
+          <option>שוק ההון</option>
+          <option>יזמות</option>
+          <option>אחר</option>
+        </select>
+
+        <label for="msg">הודעה</label>
+        <textarea id="msg" name="message" placeholder="ספרו לנו בקצרה מה מעניין אתכם..."></textarea>
+
+        <label class="muted"><input type="checkbox" id="consent" required /> אני מאשר/ת יצירת קשר לצורך קבלת מידע</label>
+
+        <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+          <button class="btn btn-primary" type="submit">שליחה</button>
+          <a class="btn btn-ghost" href="tel:03-1234567">☎ 03-1234567</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/972501234567">ווטסאפ</a>
+        </div>
+        <p class="muted">* הנתונים בדף דוגמאיים לצורכי עיצוב והמחשה.</p>
+
+        <!--
+          ⚙️ שילוב שליחה למייל – 2 דרכים:
+          1) Formspree (מהיר ללא שרת):
+             - החלף את fetch ל: fetch('https://formspree.io/f/YOUR_ID',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+          2) EmailJS (צד לקוח):
+             - כלול <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+             - emailjs.init('PUBLIC_KEY');
+             - emailjs.send('SERVICE_ID','TEMPLATE_ID', {name, phone, email, message})
+        -->
+      </form>
+
+      <aside class="aside reveal">
+        <h3>פרטי התקשרות</h3>
+        <ul>
+          <li>טלפון: 03-1234567</li>
+          <li>אימייל: info@citrine-holdings.co.il</li>
+          <li>כתובת: דרך המייסדים 10, תל אביב</li>
+        </ul>
+        <h3 style="margin-top:18px">שעות פעילות</h3>
+        <ul>
+          <li>א'-ה' · 9:00–18:00</li>
+          <li>ו' · 9:00–13:00</li>
+        </ul>
+        <h3 style="margin-top:18px">מדיניות פרטיות</h3>
+        <p class="muted">הפרטים נשמרים בהתאם לחוק הגנת הפרטיות ולא מועברים לצד שלישי ללא הסכמתכם.</p>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-title">סיטרין אחזקות</div>
+          <div class="foot-sub">משקיעים בעתיד – יוצרים ערך בהווה</div>
+        </div>
+        <div>
+          <div class="foot-title">ניווט מהיר</div>
+          <div><a href="#domains">תחומי פעילות</a> · <a href="#why">למה אנחנו</a> · <a href="#contact">צור קשר</a></div>
+        </div>
+        <div>
+          <div class="foot-title">חיבור מהיר</div>
+          <div><a target="_blank" rel="noopener" href="https://wa.me/972501234567">ווטסאפ</a> · <a href="tel:03-1234567">שיחה</a></div>
+        </div>
+      </div>
+      <div class="foot-mini">© כל הזכויות שמורות – סיטרין אחזקות · דף דוגמה</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Smooth reveal on scroll
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revealObserver.unobserve(e.target);} })
+    },{threshold:.16});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+    // Simple form validation + demo submission
+    const form = document.getElementById('leadForm');
+    const toast = document.getElementById('toast');
+    function showToast(msg, good=true){
+      toast.textContent = msg;
+      toast.style.background = good ? 'var(--ok)' : 'var(--bad)';
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 3200);
+    }
+
+    form.addEventListener('submit', async (ev)=>{
+      ev.preventDefault();
+      const fd = new FormData(form);
+      const name = fd.get('name')?.trim();
+      const phone = fd.get('phone')?.trim();
+      const email = fd.get('email')?.trim();
+      const message = fd.get('message')?.trim();
+      const consent = document.getElementById('consent').checked;
+
+      // Basic client checks
+      if(!name || !phone || !email || !consent){
+        showToast('נא למלא שם, טלפון ואימייל ולאשר יצירת קשר', false);
+        return;
+      }
+      // ✉️ DEMO: send to mailto fallback (יחליף ל-Formspree/EmailJS בפרודקשן)
+      const subject = encodeURIComponent('פניה מאתר – סיטרין אחזקות');
+      const body = encodeURIComponent(`שם: ${name}\nטלפון: ${phone}\nאימייל: ${email}\nנושא: ${fd.get('topic')}\n\nהודעה:\n${message || ''}`);
+      window.location.href = `mailto:info@citrine-holdings.co.il?subject=${subject}&body=${body}`;
+      showToast('נשלח ללקוח הדוא"ל – תודה!');
+      form.reset();
+    });
+
+    // Smooth anchor scroll for all nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
