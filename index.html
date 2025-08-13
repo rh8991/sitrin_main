@@ -7,26 +7,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand:#f4b41a; /* זהב-סיטרין */
-      --brand-dark:#d99a00;
-      --ink:#222;
-      --ink-2:#555;
-      --bg:#f7f7f7;
-      --card:#fff;
-      --ok:#2ea043;
-      --bad:#d73a49;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --brand:#1a355d;        /* כחול עמוק – מקצועי */
+      --brand-dark:#142544;   /* כחול כהה */
+      --ink:#eaeaea;          /* טקסט בהיר */
+      --ink-2:#b8c3d6;        /* אפור-כחול בהיר */
+      --bg:#181f2c;           /* כחול כהה מאוד – רקע עיקרי */
+      --card:#232b3e;         /* כחול-אפור כהה – רקע כרטיסים */
+      --ok:#2ea043;           /* ירוק */
+      --bad:#d73a49;          /* אדום */
+      --shadow:0 10px 30px rgba(26,53,93,.18); /* צל כחול כהה */
       --radius:18px;
+      /* צבעים כיפיים */
+      --accent:#f4b41a;       /* זהב */
+      --accent-light:#ffe9a0; /* זהב בהיר */
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Assistant',system-ui,Segoe UI,Arial}
-    a{color:inherit}
+    a{color:var(--accent)}
+    .card, .feature, form {background:var(--card);color:var(--ink)}
+    .section-sub, .muted {color:var(--ink-2)}
     .container{max-width:1100px;margin:auto;padding-inline:20px}
 
     /* ====== Header / Hero ====== */
     header{
       position:relative;
-      background:linear-gradient(135deg, #ffcf4d 0%, #f4b41a 45%, #f7d774 100%);
+      background:linear-gradient(135deg, #232b3e 0%, #1a355d 60%, #f4b41a 100%);
       color:#fff;
       overflow:hidden;
     }
@@ -81,7 +86,7 @@
     textarea{min-height:120px}
     .muted{color:var(--ink-2);font-size:.95rem}
 
-    .aside{background:linear-gradient(135deg,#fff7d6,#fff);border-radius:var(--radius);padding:18px;border:1px dashed #f2d27c}
+    .aside{background:linear-gradient(135deg,#232b3e 60%,#1a355d 100%);border-radius:var(--radius);padding:18px;border:1px dashed var(--accent)}
     .aside ul{margin:8px 0 0;padding:0 18px}
 
     .toast{position:fixed;bottom:20px;left:20px;background:#111;color:#fff;padding:12px 16px;border-radius:12px;opacity:0;transform:translateY(10px);transition:.25s}
@@ -141,7 +146,7 @@
         </div>
         <div class="hero-cta">
           <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">דברו איתי</button>
-          <a class="btn btn-ghost" href="https://wa.me/972501234567" target="_blank" rel="noopener">ווטסאפ מיידי</a>
+          <a class="btn btn-ghost" href="https://wa.me/972545854885" target="_blank" rel="noopener">ווטסאפ מיידי</a>
         </div>
       </div>
 
@@ -152,7 +157,7 @@
           <div class="kpi reveal"><b>350+</b><span>משקיעים פעילים</span></div>
           <div class="kpi reveal"><b>30+</b><span>פרויקטים פעילים</span></div>
         </div>
-        <div class="ribbon">CITRINE</div>
+        <!--<div class="ribbon">CITRINE</div>-->
       </div>
     </div>
   </header>
@@ -226,7 +231,7 @@
         <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
           <button class="btn btn-primary" type="submit">שליחה</button>
           <a class="btn btn-ghost" href="tel:03-1234567">☎ 03-1234567</a>
-          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/972501234567">ווטסאפ</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/972545854885">ווטסאפ</a>
         </div>
         <p class="muted">* הנתונים בדף דוגמאיים לצורכי עיצוב והמחשה.</p>
 
@@ -272,7 +277,7 @@
         </div>
         <div>
           <div class="foot-title">חיבור מהיר</div>
-          <div><a target="_blank" rel="noopener" href="https://wa.me/972501234567">ווטסאפ</a> · <a href="tel:03-1234567">שיחה</a></div>
+          <div><a target="_blank" rel="noopener" href="https://wa.me/972545854885">ווטסאפ</a> · <a href="tel:03-1234567">שיחה</a></div>
         </div>
       </div>
       <div class="foot-mini">© כל הזכויות שמורות – סיטרין אחזקות · דף דוגמה</div>
