@@ -1,31 +1,40 @@
-# Citrine Holdings – Landing Page (GitHub Pages)
+# Citrine Maintnace – Landing Page
 
-Static RTL landing page for **סיטרין אחזקות**.
+Static RTL landing page for a small business with dynamic content via JSON.
 
-## Structure
-- `index.html` – main page
-- `assets/css/main.css` – styles
-- `assets/js/app.js` – interactions (reveal, smooth scroll, form)
-- `assets/icons/favicon.svg` – favicon
-- `data/` (optional) – JSON-driven content
-- `.nojekyll` – disable Jekyll on Pages
+## Features
 
-## Run locally
-Open `index.html` directly or run a static server:
+- **Responsive design:** Optimized for mobile and desktop, with a professional dark blue theme.
+- **Editable content:**  
+  - `/data/content.he.json` contains:
+    - `theme`: CSS color variables (`--brand`, `--ink`, etc.).
+
+## Local Development
+
 ```bash
 python -m http.server 8080
-# then open http://localhost:8080
+# Then open http://localhost:8080 in your browser
 ```
 
-## Deploy (GitHub Pages)
-1. Push to a GitHub repo.
-2. GitHub → **Settings → Pages** → Source: **Deploy from a branch** → Branch: **main** / **(root)**.
-3. Open `https://<USER>.github.io/<REPO>/`.
+## Deployment (GitHub Pages)
 
-## Forms
-By default uses `mailto:` fallback. To use a real provider:
-- **Formspree**: replace the submission block in `assets/js/app.js` with a `fetch` to your endpoint.
-- **EmailJS**: include their script in `index.html` and call `emailjs.send(...)`.
+1. Go to Settings → Pages.
+2. Set source to your `main` branch (root).
+3. Site will be live at `https://<your-username>.github.io/<repo-name>/`.
 
-## License
-MIT
+## Customization
+
+- **Colors:** Edit in `/data/content.he.json`.
+- **Logo:** Update `logo.svg` and adjust `.logo-badge` size in `main.css`.
+- **Content:** All sections (header, hero, domains, why, footer) are editable via JSON.
+
+## Structure
+
+- `index.html` – Main landing page, loads all content dynamically from JSON.
+- `assets/js/app.js` – Loads JSON, applies theme, and renders all sections.
+- `main.css` – Responsive, accessible, and brand-aligned styles.
+- `data/content.he.json` – All site content and theme colors.
+
+---
+
+*For questions or improvements, open an issue on GitHub or contact the maintainer.*

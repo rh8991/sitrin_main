@@ -1,4 +1,3 @@
-
 // Toast helper
 const toast = document.getElementById('toast');
 function showToast(msg, good = true){
@@ -27,7 +26,7 @@ document.querySelectorAll('[data-scroll], a[href^="#"]').forEach(a=>{
   });
 });
 
-// Form handling (mailto fallback; can be switched to Formspree/EmailJS)
+// Form handling (mailto fallback)
 const form = document.getElementById('leadForm');
 if(form){
   form.addEventListener('submit', async (ev)=>{
@@ -36,7 +35,7 @@ if(form){
     const name = (fd.get('name')||'').trim();
     const phone = (fd.get('phone')||'').trim();
     const email = (fd.get('email')||'').trim();
-    const topic = fd.get('topic') || '';
+    const topic = (fd.get('topic')||'').trim();
     const message = (fd.get('message')||'').trim();
     const consent = document.getElementById('consent')?.checked;
 
@@ -44,23 +43,76 @@ if(form){
       showToast('נא למלא שם, טלפון ואימייל ולאשר יצירת קשר', false);
       return;
     }
-
-    // === Mailto fallback ===
     const subject = encodeURIComponent('פניה מאתר – סיטרין אחזקות');
     const body = encodeURIComponent(`שם: ${name}\nטלפון: ${phone}\nאימייל: ${email}\nנושא: ${topic}\n\nהודעה:\n${message}`);
     window.location.href = `mailto:info@citrine-holdings.co.il?subject=${subject}&body=${body}`;
     showToast('נשלח ללקוח הדוא"ל – תודה!');
     form.reset();
-
-    // === To use Formspree instead, replace the block above with: ===
-    // await fetch('https://formspree.io/f/YOUR_FORM_ID', { method:'POST', body: new FormData(form), headers:{Accept:'application/json'} });
-    // showToast('הטופס נשלח בהצלחה!');
-    // form.reset();
-
-    // === Or EmailJS (include their script in index.html head): ===
-    // emailjs.init('PUBLIC_KEY');
-    // await emailjs.send('SERVICE_ID','TEMPLATE_ID',{ name, phone, email, topic, message });
-    // showToast('הטופס נשלח בהצלחה!');
-    // form.reset();
   });
 }
+
+/* ===== JSON-driven content loader & THEME ===== */
+function applyTheme(theme){
+  if(!theme) return;
+  const root = document.documentElement;
+  const keys = ['brand','brand-dark','ink','ink-2','bg','card','ok','bad'];
+  keys.forEach(k=>{
+    if(theme[k]) root.style.setProperty('--' + k, theme[k]);
+  });
+}
+window.loadContent = async function loadContent(){
+  try {
+    const res = await fetch('data/content.he.json?_=' + Date.now());
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const c = await res.json();
+    // Theme first
+    applyTheme(c.theme);
+
+    const byPath = (obj, path) => path.split('.').reduce((o,k)=>o?.[k], obj);
+
+    // Fill simple texts
+    document.querySelectorAll('[data-t]').forEach(el=>{
+      const val = byPath(c, el.dataset.t);
+      if (typeof val === 'string') el.textContent = val;
+    });
+
+    // Hero bullets
+    if (Array.isArray(c.hero?.bullets)) {
+      const cont = document.querySelector('.bullets');
+      if (cont) cont.innerHTML = c.hero.bullets.map(b=>`<div class="bullet">✔ ${b}</div>`).join('');
+    }
+
+    // Domains cards
+    if (Array.isArray(c.domains)) {
+      const cont = document.querySelector('[data-dynamic="domains"]');
+      if (cont) cont.innerHTML = c.domains.map(item => `
+        <div class="card">
+          <div class="chip">${item.chip||''}</div>
+          <h3>${item.title||''}</h3>
+          <p>${item.text||''}</p>
+        </div>`).join('');
+    }
+
+    function renderWhyFeatures(data) {
+      const container = document.querySelector('[data-dynamic="why_features"]');
+      if (!container || !data.why_features) return;
+      container.innerHTML = data.why_features.map(f => `
+        <div class="feature">
+          <div class="icon">${f.icon}</div>
+          <div>
+            <h3>${f.title}</h3>
+            <p>${f.text}</p>
+          </div>
+        </div>
+      `).join('');
+      // Set section title
+      const whyTitle = document.querySelector('[data-t="why_title"]');
+      if (whyTitle && data.why_title) whyTitle.textContent = data.why_title;
+    }
+
+    renderWhyFeatures(c);
+
+  } catch (e) {
+    console.warn('Failed to load content.he.json:', e);
+  }
+};
