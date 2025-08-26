@@ -51,22 +51,12 @@ if(form){
   });
 }
 
-/* ===== JSON-driven content loader & THEME ===== */
-function applyTheme(theme){
-  if(!theme) return;
-  const root = document.documentElement;
-  const keys = ['brand','brand-dark','ink','ink-2','bg','card','ok','bad'];
-  keys.forEach(k=>{
-    if(theme[k]) root.style.setProperty('--' + k, theme[k]);
-  });
-}
+/* ===== JSON-driven content loader (NO THEME SYNC) ===== */
 window.loadContent = async function loadContent(){
   try {
     const res = await fetch('data/content.he.json?_=' + Date.now());
     if(!res.ok) throw new Error('HTTP ' + res.status);
     const c = await res.json();
-    // Theme first
-    applyTheme(c.theme);
 
     const byPath = (obj, path) => path.split('.').reduce((o,k)=>o?.[k], obj);
 
@@ -116,3 +106,12 @@ window.loadContent = async function loadContent(){
     console.warn('Failed to load content.he.json:', e);
   }
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+  const navToggle = document.querySelector('.nav-toggle');
+  const navBar = document.getElementById('mainNav');
+  navToggle.addEventListener('click', function() {
+    const open = navBar.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+});

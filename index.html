@@ -8,64 +8,69 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/icons/" type="image/svg+xml">
   <link rel="stylesheet" href="main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
 </head>
 
 <body>
   <header id="home" class="header">
-    <div class="container nav">
-      <div class="logo">
+    <div class="container nav-header">
+      <div class="logo-row">
         <span class="logo-badge" aria-hidden="true"></span>
         <span data-t="header.title">סיטרין אחזקות</span>
+        <button class="nav-toggle" aria-label="תפריט" aria-expanded="false">
+          ☰
+        </button>
       </div>
-      <nav>
-        <a href="#domains" data-t="header.nav_domains">תחומי פעילות</a> ·
-        <a href="#why" data-t="header.nav_why">למה אנחנו</a> ·
-        <a href="#contact" data-t="header.nav_contact">צור קשר</a>
-        <a class="cta-mini" href="#contact" data-t="header.nav_cta">שיחה עם נציג</a>
+      <nav class="nav-bar" id="mainNav">
+        <a class="nav-links" href="#domains" data-t="header.nav_domains">תחומי פעילות</a>
+        <a class="nav-links" href="#why" data-t="header.nav_why">למה אנחנו</a>
+        <a class="nav-links" href="#contact" data-t="header.nav_contact">צור קשר</a>
+        <!--<a class="cta-mini" href="#contact" data-t="header.nav_cta">שיחה עם נציג</a>-->
       </nav>
     </div>
-
     <div class="container hero">
       <div>
         <div class="pill" data-t="header.tagline">משקיעים בעתיד · יוצרים ערך בהווה</div>
-        <h1 data-t="hero.title"></h1>
+        <h1 class="main-title">סיטרין אחזקות</h1>
         <p data-t="hero.sub"></p>
         <div class="bullets"></div>
         <div class="hero-cta">
-          <button class="btn btn-primary" data-scroll="#contact" data-t="hero.cta_primary"></button>
-          <a class="btn btn-ghost" href="https://wa.me/972545854885" target="_blank" rel="noopener"
-            data-t="hero.cta_whatsapp"></a>
+          <button class="btn btn-ghost" data-scroll="#contact" data-t="hero.cta_primary"></button>
+          <a class="btn btn-ghost" href="https://wa.me/972545854885" target="_blank" rel="noopener">
+            <img src="assets/icons/whatsapp.svg" alt="WhatsApp" style="width:24px;height:24px;vertical-align:middle;margin-left:8px;">
+            ווטסאפ
+          </a>
         </div>
       </div>
-
       <div class="hero-visual">
         <div class="kpi-grid">
           <div class="kpi reveal"><b>10+</b><span>שנות ניסיון בתחום</span></div>
           <div class="kpi reveal"><b>100+</b><span>פרויקטים שהושלמו</span></div>
           <div class="kpi reveal"><b>250+</b><span>לקוחות מרוצים</span></div>
           <div class="kpi reveal"><b>24/7</b><span>זמינות למענה חירום</span></div>
-
         </div>
       </div>
     </div>
   </header>
 
   <section id="domains" class="container">
-    <h2 class="section-title reveal" data-t="domains_title"></h2>
-    <p class="section-sub reveal" data-t="domains_sub"></p>
+    <h2 class="section-title" data-t="domains_title"></h2>
+    <p class="section-sub" data-t="domains_sub"></p>
     <div class="cards" data-dynamic="domains"></div>
   </section>
 
   <section id="why" class="container">
-    <h2 class="section-title reveal" data-t="why_title"></h2>
+    <h2 class="section-title" data-t="why_title"></h2>
     <div class="features" data-dynamic="why_features"></div>
   </section>
 
+  <hr class="dashed" width="85%"/>
+
   <section id="contact" class="container">
-    <h2 class="section-title reveal">צור קשר</h2>
-    <p class="section-sub reveal">השאירו פרטים ונציג יחזור אליכם בהקדם. אפשר גם לשלוח ווטסאפ או להתקשר.</p>
+    <h2 class="section-title">צור קשר</h2>
+    <p class="section-sub">השאירו פרטים ונציג יחזור אליכם בהקדם. אפשר גם לשלוח ווטסאפ או להתקשר.</p>
     <div class="contact">
-      <form id="leadForm" class="reveal" novalidate>
+      <form id="leadForm" class="form-title" novalidate>
         <div class="row">
           <div>
             <label for="name">שם מלא</label>
@@ -93,18 +98,16 @@
         <label for="msg">הודעה</label>
         <textarea id="msg" name="message" placeholder="ספרו לנו בקצרה מה מעניין אתכם..."></textarea>
 
-        <label class="muted"><input type="checkbox" id="consent" required /> אני מאשר/ת יצירת קשר לצורך קבלת
-          מידע</label>
+        <label class="muted"><input type="checkbox" id="consent" required /> אני מאשר/ת יצירת קשר לצורך קבלת מידע</label>
 
         <div class="actions">
           <button class="btn btn-primary" type="submit">שליחה</button>
           <a class="btn btn-ghost" href="tel:054-5854885">☎ 054-5854885</a>
           <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/972545854885">ווטסאפ</a>
         </div>
-        <p class="muted">* הנתונים בדף דוגמאיים לצורכי עיצוב והמחשה.</p>
       </form>
 
-      <aside class="aside reveal">
+      <aside class="section-sub">
         <h3>פרטי התקשרות</h3>
         <ul>
           <li>טלפון: 054-5854885</li>
@@ -134,11 +137,11 @@
         </div>
         <div>
           <div class="foot-title">חיבור מהיר</div>
-          <div><a target="_blank" rel="noopener" href="https://wa.me/972501234567">ווטסאפ</a> · <a
+          <div><a target="_blank" rel="noopener" href="https://wa.me/972545854885">ווטסאפ</a> · <a
               href="tel:054-5854885">שיחה</a></div>
         </div>
       </div>
-      <div class="foot-mini">© כל הזכויות שמורות – סיטרין אחזקות · דף דוגמה</div>
+      <div class="foot-mini">© כל הזכויות שמורות – סיטרין אחזקות</div>
     </div>
   </footer>
 
@@ -147,6 +150,29 @@
   <script src="assets/js/app.js"></script>
   <script>document.addEventListener("DOMContentLoaded", () => { window.loadContent && window.loadContent(); });</script>
   <script src="https://cdn.enable.co.il/licenses/enable-L46900m7ak45pezi-0825-73145/init.js"></script>
+  <script>
+    // Show/hide menu button only on mobile
+    function handleNavToggleDisplay() {
+      const navToggle = document.querySelector('.nav-toggle');
+      if (window.innerWidth <= 900) {
+        navToggle.style.display = 'inline-block';
+      } else {
+        navToggle.style.display = 'none';
+        document.getElementById('mainNav').classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+    window.addEventListener('resize', handleNavToggleDisplay);
+    document.addEventListener('DOMContentLoaded', function() {
+      handleNavToggleDisplay();
+      const navToggle = document.querySelector('.nav-toggle');
+      const navBar = document.getElementById('mainNav');
+      navToggle.addEventListener('click', function() {
+        const open = navBar.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
 </body>
 
 </html>
