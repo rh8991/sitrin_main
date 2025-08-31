@@ -617,6 +617,13 @@ select {
     display: none;
   }
 
+.intro-cta {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  
   .nav-bar.open {
     display: flex;
   }
@@ -657,6 +664,7 @@ select {
     gap: 12px;
   }
 
+  .form-title,
   .contact {
     grid-template-columns: 1fr;
     gap: 12px;
