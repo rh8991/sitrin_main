@@ -8,41 +8,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/icons/" type="image/svg+xml">
   <link rel="stylesheet" href="main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
-</head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
+  </head>
 
 <body>
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="assets/background_vid.mp4" type="video/mp4">
+  </video>
+
   <header id="home" class="header">
     <div class="container nav-header">
-      <div class="logo-row">
-        <span class="logo-badge" aria-hidden="true"></span>
-        <span data-t="header.title">סיטרין אחזקות</span>
-        <button class="nav-toggle" aria-label="תפריט" aria-expanded="false">
-          ☰
-        </button>
+      <div id="logo-row" class="logo-row">
+        <button class="nav-toggle" aria-label="תפריט" aria-expanded="false"></button>
+        <a href="#home" class="logo-badge" aria-label="סיטרין אחזקות">
+          <span aria-hidden="true"></span>
+        </a>
       </div>
       <nav class="nav-bar" id="mainNav">
         <a class="nav-links" href="#domains" data-t="header.nav_domains">תחומי פעילות</a>
         <a class="nav-links" href="#why" data-t="header.nav_why">למה אנחנו</a>
         <a class="nav-links" href="#contact" data-t="header.nav_contact">צור קשר</a>
-        <!--<a class="cta-mini" href="#contact" data-t="header.nav_cta">שיחה עם נציג</a>-->
       </nav>
     </div>
-    <div class="container hero">
+    <div id="intro" class="container intro">
       <div>
-        <div class="pill" data-t="header.tagline">משקיעים בעתיד · יוצרים ערך בהווה</div>
-        <h1 class="main-title">סיטרין אחזקות</h1>
-        <p data-t="hero.sub"></p>
-        <div class="bullets"></div>
-        <div class="hero-cta">
-          <button class="btn btn-ghost" data-scroll="#contact" data-t="hero.cta_primary"></button>
+        <div class="main-title" data-t="header.title"></div>
+        <div class="pill" data-t="header.tagline"></div>
+        <div class="bullets">
+          <div class="bullet" data-t="intro.bullets.0"></div>
+          <div class="bullet" data-t="intro.bullets.1"></div>
+          <div class="bullet" data-t="intro.bullets.2"></div>
+          <div class="bullet" data-t="intro.bullets.3"></div>
+        </div>
+        <div class="intro-cta">
+          <button class="btn btn-ghost" data-scroll="#contact" data-t="intro.cta_primary"></button>
           <a class="btn btn-ghost" href="https://wa.me/972545854885" target="_blank" rel="noopener">
             <img src="assets/icons/whatsapp.svg" alt="WhatsApp" style="width:24px;height:24px;vertical-align:middle;margin-left:8px;">
             ווטסאפ
           </a>
         </div>
       </div>
-      <div class="hero-visual">
+      <div class="intro-visual">
         <div class="kpi-grid">
           <div class="kpi reveal"><b>10+</b><span>שנות ניסיון בתחום</span></div>
           <div class="kpi reveal"><b>100+</b><span>פרויקטים שהושלמו</span></div>
@@ -52,6 +58,7 @@
       </div>
     </div>
   </header>
+
 
   <section id="domains" class="container">
     <h2 class="section-title" data-t="domains_title"></h2>
@@ -64,9 +71,7 @@
     <div class="features" data-dynamic="why_features"></div>
   </section>
 
-  <hr class="dashed" width="85%"/>
-
-  <section id="contact" class="container">
+  <section id="contact" class="button_container">
     <h2 class="section-title">צור קשר</h2>
     <p class="section-sub">השאירו פרטים ונציג יחזור אליכם בהקדם. אפשר גם לשלוח ווטסאפ או להתקשר.</p>
     <div class="contact">
@@ -86,6 +91,7 @@
 
         <label for="topic">נושא</label>
         <select id="topic" name="topic">
+          <option disabled selected value>בחר/י נושא</option>
           <option>חשמל</option>
           <option>מיזוג ואוורור</option>
           <option>תחזוקה</option>
@@ -97,21 +103,16 @@
 
         <label for="msg">הודעה</label>
         <textarea id="msg" name="message" placeholder="ספרו לנו בקצרה מה מעניין אתכם..."></textarea>
-
+        
         <label class="muted"><input type="checkbox" id="consent" required /> אני מאשר/ת יצירת קשר לצורך קבלת מידע</label>
-
-        <div class="actions">
-          <button class="btn btn-primary" type="submit">שליחה</button>
-          <a class="btn btn-ghost" href="tel:054-5854885">☎ 054-5854885</a>
-          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/972545854885">ווטסאפ</a>
-        </div>
+        <a class="btn btn-primary" type="submit">שליחה</a>
       </form>
 
       <aside class="section-sub">
         <h3>פרטי התקשרות</h3>
         <ul>
-          <li>טלפון: 054-5854885</li>
-          <li>אימייל: sitrinmain@gmail.com</li>
+          <li>טלפון: <a href="tel:054-5854885">054-5854885</a></li>
+          <li>אימייל: <a href="mailto:sitrinmain@gmail.com">sitrinmain@gmail.com</a></li>
         </ul>
         <h3 class="mt">שעות פעילות</h3>
         <ul>

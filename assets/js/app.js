@@ -107,9 +107,10 @@ window.loadContent = async function loadContent(){
   }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
   const navToggle = document.querySelector('.nav-toggle');
   const navBar = document.getElementById('mainNav');
+  if (!navToggle || !navBar) return;
   navToggle.addEventListener('click', function() {
     const open = navBar.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
