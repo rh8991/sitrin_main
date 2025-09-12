@@ -512,6 +512,33 @@ select {
   pointer-events: none;
 }
 
+/* WhatsApp Float Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  background: var(--ok, #2ea043);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(32,80,114,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.whatsapp-float:hover {
+  box-shadow: 0 8px 24px rgba(32,80,114,0.22);
+  transform: scale(1.07);
+}
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  filter: brightness(0) invert(1); /* Makes SVG icon white */
+}
+
 /* Responsive */
 @media (max-width: 900px) {
 
@@ -688,5 +715,17 @@ select {
   .foot-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .whatsapp-float {
+    bottom: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+  }
+  .whatsapp-float img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1); /* Ensures white icon on mobile too */
   }
 }
